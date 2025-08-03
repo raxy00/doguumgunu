@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>İyi ki Doğdun!</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffe9ec;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #333;
+      overflow-x: hidden;
+    }
+    h1 {
+      margin-top: 40px;
+      font-size: 2.5em;
+      color: #c94f7c;
+    }
+    .video-container {
+      margin: 40px auto;
+      max-width: 560px;
+    }
+    /* Yatay kaydırılabilir galeri */
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      max-width: 90vw;
+      margin: 40px auto 20px;
+      padding-bottom: 10px;
+      gap: 15px;
+      scrollbar-width: thin;
+      scrollbar-color: #c94f7c transparent;
+    }
+    .gallery::-webkit-scrollbar {
+      height: 8px;
+    }
+    .gallery::-webkit-scrollbar-thumb {
+      background-color: #c94f7c;
+      border-radius: 4px;
+    }
+    .gallery img {
+      flex: 0 0 auto;
+      width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      user-select: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    audio {
+      margin-top: 20px;
+    }
+    /* Mesaj ve kalpler */
+    .message-container {
+      position: relative;
+      margin: 40px auto 80px;
+      max-width: 600px;
+      font-size: 2em;
+      color: #c94f7c;
+      font-weight: 700;
+      background: #fff0f5;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(201,79,124,0.3);
+      overflow: visible;
+    }
+    .heart {
+      position: absolute;
+      color: #e63946;
+      font-size: 24px;
+      animation-name: floatUp;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      opacity: 0.8;
+      user-select: none;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-20px) scale(1.2);
+      }
+      100% {
+        transform: translateY(-40px) scale(1);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 İyi ki Doğdun Ada]! 🎂</h1>
+
+  <!-- Müzik -->
+  <audio controls autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_274f38f62f.mp3?filename=happy-birthday-5094.mp3" type="audio/mpeg" />
+    Tarayıcınız müzik çaları desteklemiyor.
+  </audio>
+
+  <!-- Video Başta, otomatik oynatmalı -->
+  <div class="video-container">
+    <iframe width="560" height="315"
+      src="https://www.youtube.com/embed/RYw8GehHBbs?autoplay=1&mute=1"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allow="autoplay"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- Mesaj ve Kalpler -->
+  <div class="message-container" id="message">
+    İyi ki doğdun güzelim ❤️
+  </div>
+
+  <!-- Fotoğraf Galerisi (Yatay Kaydırılabilir) -->
+  <div class="gallery">
+    <img src="https://i.imgur.com/hgtePEr.jpeg" alt="Anı 1" />
+    <img src="https://i.imgur.com/tV1dmS8.jpeg" alt="Anı 2" />
+    <img src="https://i.imgur.com/SnKRPf4.jpeg" alt="Anı 3" />
+    <img src="https://i.imgur.com/nCIV9uo.jpeg" alt="Anı 4" />
+    <img src="https://i.imgur.com/IcvYFBq.jpeg" alt="Anı 5" />
+    <img src="https://i.imgur.com/brzdaWM.jpeg" alt="Anı 6" />
+    <img src="https://i.imgur.com/96A2YFX.jpeg" alt="Anı 7" />
+    <img src="https://i.imgur.com/o1lILq6.jpeg" alt="Anı 8" />
+    <img src="https://i.imgur.com/mhqCHM8.jpeg" alt="Anı 9" />
+    <img src="https://i.imgur.com/HJbPdQg.jpeg" alt="Anı 10" />
+  </div>
+
+  <script>
+    const message = document.getElementById('message');
+    const colors = ['#e63946', '#f1faee', '#a8dadc', '#457b9d', '#ffb703'];
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+
+      const x = Math.random() * (message.clientWidth - 24);
+      const y = Math.random() * (message.clientHeight - 24);
+
+      heart.style.left = `${x}px`;
+      heart.style.top = `${y}px`;
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+      heart.style.animationDuration = (2 + Math.random() * 2) + 's';
+      heart.style.animationDelay = (Math.random() * 2) + 's';
+
+      message.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
